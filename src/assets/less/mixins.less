@@ -1,0 +1,272 @@
+.px2rem(@name, @px){
+    @{name}: @px * 2 / 100 * 1rem;
+}
+.px2rem(@name, @px1, @px2){
+    @{name}: @px1 * 2 / 100 * 1rem @px2 * 2 / 100 * 1rem;
+}
+.px2rem(@name, @px1, @px2, @px3){
+    @{name}: @px1 * 2 / 100 * 1rem @px2 * 2 / 100 * 1rem @px3 * 2 / 100 * 1rem;
+}
+.px2rem(@name, @px1, @px2, @px3, @px4){
+    @{name}: @px1 * 2 / 100 * 1rem @px2 * 2 / 100 * 1rem @px3 * 2 / 100 * 1rem @px4 * 2 / 100 * 1rem;
+}
+.rembg(@w, @h, @url){
+  display: inline-block;
+  .px2rem(width, @w);
+  .px2rem(height, @h);
+  background: url('/src/images/@{url}?__inline') no-repeat;
+  background-size: 100% 100%;
+}
+
+.cf(){
+	&:after{
+		content:".";display:block;height:0;clear:both;visibility:hidden;font-size: 0;
+	}
+}
+
+.left(){
+    float: left;
+}
+
+.right(){
+    float: right;
+}
+
+.hsho(@h){
+	height: @h;
+	overflow: hidden;
+}
+
+.hlho(@h){
+	height: @h;
+	line-height: @h;
+	overflow: hidden;
+}
+
+// 强制换行
+.word-break(){
+	word-break: break-all;
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+// 强制不换行
+.no-wrap(){
+	word-break: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+}
+
+// 文字溢出显示省略号
+.text-overflow(){
+	display: block;
+	white-space: nowrap;
+	word-wrap: normal;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+// 多行文本溢出显示省略号 仅webkit支持
+// Source:http://c7sky.com/text-overflow-ellipsis-on-multiline-text.html
+.line-overflow(@line:1){
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: @line;
+	-webkit-box-orient: vertical;
+}
+
+.setTopLine(@c: #C7C7C7) {
+  & {
+    position: relative;
+  }
+  &:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid @c;
+  }
+  [data-dpr="1"] &:before {
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+  }
+}
+
+// css3 arrow
+.setArrowWidth_Wap(@borderWidth) {
+    border-width: @borderWidth @borderWidth 0 0;
+}
+.setArrowSize_Wap(@arrowsize) {
+    height: @arrowsize;
+    width: @arrowsize;
+}
+.setArrowCommon_Wap(@borderColor) {
+    border-color: @borderColor;
+    display: inline-block;
+    border-style: solid;
+}
+.setArrow_Wap(@direction, @arrowsize, @borderColor,@borderWidth) when (@direction = top) {
+    transform: rotate(-45deg);
+    .setArrowSize_Wap(@arrowsize);
+    .setArrowWidth_Wap(@borderWidth);
+    .setArrowCommon_Wap(@borderColor);
+}
+
+.setArrow_Wap(@direction, @arrowsize, @borderColor,@borderWidth) when (@direction = right) {
+    transform: rotate(45deg);
+    .setArrowSize_Wap(@arrowsize);
+    .setArrowWidth_Wap(@borderWidth);
+    .setArrowCommon_Wap(@borderColor);
+}
+
+.setArrow_Wap(@direction, @arrowsize, @borderColor,@borderWidth) when (@direction = bottom) {
+    transform: rotate(135deg);
+    .setArrowSize_Wap(@arrowsize);
+    .setArrowWidth_Wap(@borderWidth);
+    .setArrowCommon_Wap(@borderColor);
+}
+
+.setArrow_Wap(@direction, @arrowsize, @borderColor,@borderWidth) when (@direction = left) {
+    transform: rotate(-135deg);
+    .setArrowSize_Wap(@arrowsize);
+    .setArrowWidth_Wap(@borderWidth);
+    .setArrowCommon_Wap(@borderColor);
+}
+
+// setArrow
+// --------------------------------------------------
+.arrow_common(@borderWidth) {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-style: dashed;
+	border-color: transparent;
+	border-width: @borderWidth;
+}
+.arrow_t(@c) {
+    border-top-width: 0;
+    border-bottom-color: @c;
+    border-bottom-style: solid;
+}
+
+.arrow_r(@c) {
+    border-right-width: 0;
+    border-left-color: @c;
+    border-left-style: solid;
+}
+
+.arrow_b(@c) {
+    border-bottom-width: 0;
+    border-top-color: @c;
+    border-top-style: solid;
+}
+
+.arrow_l(@c) {
+    border-left-width: 0;
+    border-right-color: @c;
+    border-right-style: solid;
+}
+.setArrow(@direction, @borderWidth, @borderColor) when (@direction = top) {
+    .arrow_common(@borderWidth);
+    .arrow_t(@borderColor);
+}
+
+.setArrow(@direction, @borderWidth, @borderColor) when (@direction = right) {
+	.arrow_common(@borderWidth);
+    .arrow_r(@borderColor);
+}
+
+.setArrow(@direction, @borderWidth, @borderColor) when (@direction = bottom) {
+	.arrow_common(@borderWidth);
+    .arrow_b(@borderColor);
+}
+
+.setArrow(@direction, @borderWidth, @borderColor) when (@direction = left) {
+    .arrow_common(@borderWidth);
+    .arrow_l(@borderColor);
+}
+
+// setClose
+.setClose(@size, @color) {
+    width:@size;
+    height:@size;
+    cursor: pointer;
+    &:before, &:after{
+      position:absolute;
+      left:0px;
+      top:50%;
+      margin-top: -2px;
+      content:'';
+      width:@size;
+      height:2px;
+      background-color:@color;
+      transform:rotate(45deg);
+      border-radius: 2px;
+    }
+    &:after{
+      transform:rotate(-45deg);
+    }
+}
+ //1px边框
+.full-border-1px(@color:#eee, @radius:0, @style:solid){
+    position: relative;
+    border:none;
+    &::before{
+        pointer-events: none; /* 防止点击触发 */
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px @style @color;
+        width: 100%;
+        height: 100%;
+        border-radius: @radius*2;
+    }
+}
+.single-border-1px(@color, @style, @side){
+    position: relative;
+    border:none;
+    &::before{
+        pointer-events: none; /* 防止点击触发 */
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-@{side}: 1px @style @color;
+        width: 100%;
+        height: 100%;
+    }
+}
+.top-border-1px(@color:#eee, @style:solid){
+    .single-border-1px(@color, @style,top)
+}
+.bottom-border-1px(@color:#eee, @style:solid){
+    .single-border-1px(@color, @style,bottom)
+}
+.left-border-1px(@color:#eee, @style:solid){
+    .single-border-1px(@color, @style,left)
+}
+.right-border-1px(@color:#eee, @style:solid){
+    .single-border-1px(@color, @style,right)
+}
+//两边留白
+.space-both-sides(@left:.3rem, @right:.3rem){
+    padding-left: @left;
+    padding-right: @right;
+}
+//扩充点击区域
+.clickZone(){
+    position:relative;
+        &:before{
+            content:"";
+            position:absolute;
+            top:-10px;
+            left:-10px;
+            bottom:-10px;
+            right:-10px;
+        }
+}

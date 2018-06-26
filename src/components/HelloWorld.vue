@@ -6,6 +6,9 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import { Button } from 'vant'
+Vue.use(Button)
 export default {
   name: 'HelloWorld',
   data () {
@@ -17,11 +20,16 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .van-button {
-    font-size: 16px;
-    width: 100px;
-    height: 40px;
-    line-height: 40px;
+<style scoped lang="less">
+@import '../assets/less/mixins.less'; /*引入公共样式*/
+.van-button {
+  font-size: 0.32rem;
+  .px2rem(font-size, 12);
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  p {
+    font-size: 12px;
   }
+}
 </style>

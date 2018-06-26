@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import 'lib-flexible/flexible'
-import { Button } from 'vant'
-Vue.use(Button)
+// 设计稿750  设计稿大小除以50
+import 'vue-ydui/dist/ydui.flexible'
 
 Vue.config.productionTip = false
 
