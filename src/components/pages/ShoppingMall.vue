@@ -52,24 +52,9 @@
       </swiper>
       </div>
     </div>
-    <!--floor one area-->
-    <div class="floor">
-      <div class="floor-title">1floor</div>
-      <div class="floor-anomaly">
-        <div>
-          <div class="floor-one"><img :src="floor1_0.image" alt=""></div>
-        </div>
-        <div>
-          <div class="floor-two"><img :src="floor1_1.image" alt=""></div>
-          <div class="floor-three"><img :src="floor1_2.image" alt=""></div>
-        </div>
-      </div>
-      <div class="floor-rule">
-        <div v-for="(item ,index) in floor1.slice(3)" :key="index">
-            <img :src="item.image" alt="">
-        </div>
-      </div>
-    </div>
+    <floor :floorData="floor1" :floorTitle="floorName.floor1"></floor>
+    <floor :floorData="floor2" :floorTitle="floorName.floor2"></floor>
+    <floor :floorData="floor3" :floorTitle="floorName.floor3"></floor>
   </div>
 </template>
 
@@ -77,6 +62,7 @@
 import { getHome } from '@/api/index'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import Floor from '@/components/component/Floor'
 export default {
   data () {
     return {
@@ -91,9 +77,9 @@ export default {
         slidesPerGroup: 3
       },
       floor1: '',
-      floor1_0: '',
-      floor1_1: '',
-      floor1_2: ''
+      floor2: '',
+      floor3: '',
+      floorName: ''
     }
   },
   created () {
@@ -106,9 +92,9 @@ export default {
         this.bannerPicArray = response.data.data.slides
         this.recommendGoods = response.data.data.recommend
         this.floor1 = response.data.data.floor1
-        this.floor1_0 = this.floor1[0]
-        this.floor1_1 = this.floor1[1]
-        this.floor1_2 = this.floor1[2]
+        this.floor2 = response.data.data.floor2
+        this.floor3 = response.data.data.floor3
+        this.floorName = response.data.data.floorName
       }
     }).catch((error) => {
       console.log(error)
@@ -121,7 +107,8 @@ export default {
   },
   components: {
     swiper,
-    swiperSlide
+    swiperSlide,
+    Floor
   }
 }
 </script>
@@ -223,54 +210,6 @@ export default {
           span{
             text-decoration: line-through;
           }
-        }
-      }
-    }
-  }
-  .floor{
-    .rem(margin-top, 20);
-    background-color: #fff;
-    .floor-title{
-      .rem(padding, 20, 20);
-      border-bottom:1px solid #ccc;
-      .rem(font-size, 28);
-      color: @bg;
-      text-align: center;
-    }
-    img{
-      width: 100%;
-      display: block;
-      border: none;
-    }
-    .floor-anomaly{
-      display: flex;
-      flex-direction:row;
-      border-bottom: 1px solid #ccc;
-      div{
-        box-sizing: border-box;
-        &.floor-one{
-          border-right: 1px solid #ccc;
-          // border-bottom: 1px solid #ddd;
-        }
-        &.floor-two{
-          border-bottom: 1px solid #ccc;
-        }
-        &.floor-three{
-          // border-bottom: 1px solid #ddd;
-        }
-      }
-    }
-    .floor-rule{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      width: 100%;
-      div{
-        width: 50%;
-        box-sizing: border-box;
-        border-bottom: 1px solid #ccc;
-        &:nth-child(odd){
-          border-right: 1px solid #ccc;
         }
       }
     }
