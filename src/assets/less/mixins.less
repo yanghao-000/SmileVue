@@ -1,19 +1,19 @@
-.px2rem(@name, @px){
-    @{name}: @px * 2 / 100 * 1rem;
+.rem(@name, @px){
+    @{name}: @px / 100 * 1rem;
 }
-.px2rem(@name, @px1, @px2){
-    @{name}: @px1 * 2 / 100 * 1rem @px2 * 2 / 100 * 1rem;
+.rem(@name, @px1, @px2){
+    @{name}: @px1 / 100 * 1rem @px2 / 100 * 1rem;
 }
-.px2rem(@name, @px1, @px2, @px3){
-    @{name}: @px1 * 2 / 100 * 1rem @px2 * 2 / 100 * 1rem @px3 * 2 / 100 * 1rem;
+.rem(@name, @px1, @px2, @px3){
+    @{name}: @px1 / 100 * 1rem @px2 / 100 * 1rem @px3 / 100 * 1rem;
 }
-.px2rem(@name, @px1, @px2, @px3, @px4){
-    @{name}: @px1 * 2 / 100 * 1rem @px2 * 2 / 100 * 1rem @px3 * 2 / 100 * 1rem @px4 * 2 / 100 * 1rem;
+.rem(@name, @px1, @px2, @px3, @px4){
+    @{name}: @px1 / 100 * 1rem @px2 / 100 * 1rem @px3 / 100 * 1rem @px4 / 100 * 1rem;
 }
 .rembg(@w, @h, @url){
   display: inline-block;
-  .px2rem(width, @w);
-  .px2rem(height, @h);
+  .rem(width, @w);
+  .rem(height, @h);
   background: url('/src/images/@{url}?__inline') no-repeat;
   background-size: 100% 100%;
 }

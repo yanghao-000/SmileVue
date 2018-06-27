@@ -3,6 +3,9 @@ import App from './App'
 import router from './router'
 // 设计稿750  设计稿大小除以50
 import 'vue-ydui/dist/ydui.flexible'
+// 按需引入
+import { Button, Row, Col, Swipe, SwipeItem, Lazyload } from 'vant'
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload)
 
 Vue.config.productionTip = false
 
