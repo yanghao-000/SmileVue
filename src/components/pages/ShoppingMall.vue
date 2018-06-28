@@ -59,7 +59,22 @@
     <div class="hot-area">
       <div class="hot-title">热卖商品</div>
       <div class="hot-goods">
-        <!--这里需要一个list组件-->
+        <van-list>
+          <van-row>
+            <van-col span="12" v-for="( item, index) in hotGoods" :key="index">
+              <goods-info :goodsImage="item.image" :goodsName="item.name" :goodsPrice="item.price"></goods-info>
+            </van-col>
+          </van-row>
+        </van-list>
+        <!-- <van-list
+          v-model="loading"
+          :finished="finished"
+          @load="onLoad"
+        >
+          <van-col span="12" v-for="( item, index) in hotGoods" :key="index">
+            <goods-info :goodsImage="item.image" :goodsName="item.name" :goodsPrice="item.price"></goods-info>
+          </van-col>
+        </van-list> -->
       </div>
     </div>
   </div>
@@ -71,6 +86,7 @@ import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Floor from '@/components/component/Floor'
 import { toMoney } from '@/fliter/index'
+import GoodsInfo from '@/components/component/GoodsInfo'
 export default {
   data () {
     return {
@@ -87,7 +103,10 @@ export default {
       floor1: '',
       floor2: '',
       floor3: '',
-      floorName: ''
+      floorName: '',
+      hotGoods: [],
+      loading: false,
+      finished: false
     }
   },
   created () {
@@ -103,6 +122,7 @@ export default {
         this.floor2 = response.data.data.floor2
         this.floor3 = response.data.data.floor3
         this.floorName = response.data.data.floorName
+        this.hotGoods = response.data.data.hotGoods
       }
     }).catch((error) => {
       console.log(error)
@@ -112,11 +132,24 @@ export default {
     // async getRes () {
     //   this.res = (await getHome()).data
     // }
+    onLoad () {
+      setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+          this.list.push(this.list.length + 1)
+        }
+        this.loading = false
+
+        if (this.list.length >= 40) {
+          this.finished = true
+        }
+      }, 500)
+    }
   },
   components: {
     swiper,
     swiperSlide,
-    Floor
+    Floor,
+    GoodsInfo
   },
   filters: {
     moneyFilter (money) {
@@ -228,9 +261,22 @@ export default {
     }
   }
   .hot-area{
+    .hot-title{
+      .rem(padding, 20, 20);
+      .rem(font-size, 28);
+      color: @bg;
+    }
     text-align: center;
     font-size:14px;
-    height: 1.8rem;
-    line-height:1.8rem;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    .van-col:nth-child(odd){
+      float: left;
+    }
+    .van-col:nth-child(even){
+      float: right;
+    }
   }
 </style>
