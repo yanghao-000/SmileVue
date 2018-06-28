@@ -44,7 +44,7 @@
               <img :src="item.image" width="80%" />
               <div class="name">{{item.goodsName}}</div>
               <div class="price">
-                ￥{{item.price}}
+                ￥{{item.price | moneyFilter}}
                 <span>(￥{{item.mallPrice}})</span>
               </div>
             </div>
@@ -55,6 +55,13 @@
     <floor :floorData="floor1" :floorTitle="floorName.floor1"></floor>
     <floor :floorData="floor2" :floorTitle="floorName.floor2"></floor>
     <floor :floorData="floor3" :floorTitle="floorName.floor3"></floor>
+    <!--Hot Area-->
+    <div class="hot-area">
+      <div class="hot-title">热卖商品</div>
+      <div class="hot-goods">
+        <!--这里需要一个list组件-->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -63,6 +70,7 @@ import { getHome } from '@/api/index'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Floor from '@/components/component/Floor'
+import { toMoney } from '@/fliter/index'
 export default {
   data () {
     return {
@@ -109,6 +117,11 @@ export default {
     swiper,
     swiperSlide,
     Floor
+  },
+  filters: {
+    moneyFilter (money) {
+      return toMoney(money)
+    }
   }
 }
 </script>
@@ -213,5 +226,11 @@ export default {
         }
       }
     }
+  }
+  .hot-area{
+    text-align: center;
+    font-size:14px;
+    height: 1.8rem;
+    line-height:1.8rem;
   }
 </style>
