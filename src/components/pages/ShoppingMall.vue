@@ -3,7 +3,9 @@
     <!--search bar layout-->
     <div class="search-bar">
       <van-row>
-        <van-col span="3" class="location"><i class="iconfont icon-location"></i></van-col>
+        <van-col span="3" class="location">
+          <i class="iconfont icon-location"></i>
+        </van-col>
         <van-col span="16" class="search">
           <input type="text" class="search-input" placeholder="输入商品"/>
         </van-col>
@@ -160,123 +162,123 @@ export default {
 </script>
 
 <style scoped lang='less'>
-  @import '../../assets/less/base.less';
-  .search-bar{
-    .rem(height, 88);
-    .rem(line-height, 88);
-    background-color: @bg;
-    text-align: center;
+@import '../../assets/less/base.less';
+.search-bar{
+  .rem(height, 88);
+  .rem(line-height, 88);
+  background-color: @bg;
+  text-align: center;
+  overflow: hidden;
+  .location{
+    .iconfont{
+      color: #fff;
+      .rem(font-size, 40);
+    }
+  }
+  .search{
+    input{
+      display: block;
+      width: 100%;
+      .rem(height, 70);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #fff;
+      .rem(font-size, 28);
+      color: #fff;
+      .rem(text-indent, 20);
+      &::-webkit-input-placeholder{
+          color:#fff;
+      }
+    }
+  }
+  .search-btn{
+    .van-button{
+      width: 80%;
+      .rem(height, 50);
+      .rem(line-height, 50);
+      .rem(font-size, 28);
+      color: @bg;
+    }
+  }
+}
+.swiper-area{
+    .rem(height, 334);
     overflow: hidden;
-    .location{
-      .iconfont{
-        color: #fff;
-        .rem(font-size, 40);
-      }
-    }
-    .search{
-      input{
-        display: block;
+    .van-swipe{
         width: 100%;
-        .rem(height, 70);
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid #fff;
-        .rem(font-size, 28);
-        color: #fff;
-        .rem(text-indent, 20);
-        &::-webkit-input-placeholder{
-            color:#fff;
-        }
-      }
     }
-    .search-btn{
-      .van-button{
-        width: 80%;
-        .rem(height, 50);
-        .rem(line-height, 50);
-        .rem(font-size, 28);
-        color: @bg;
-      }
+    img{
+        width: 100%;
+        display: block;
+    }
+}
+.type-bar{
+  text-align: center;
+  .rem(padding, 20, 0);
+  .rem(margin-top, 12);
+  background-color: #fff;
+  div{
+    img{
+      width: 80%;
+      margin: 0 auto;
+      display: block;
+      border: none;
+      .rem(margin-bottom, 14);
+    }
+    span{
+      .rem(font-size, 26);
+      color: #999;
     }
   }
-  .swiper-area{
-      .rem(height, 334);
-      overflow: hidden;
-      .van-swipe{
-          width: 100%;
-      }
-      img{
-          width: 100%;
-          display: block;
-      }
+}
+.ad-banner{
+  .rem(padding, 12, 0, 24, 0);
+}
+.recommend-area{
+  background-color: #fff;
+  .recommend-title{
+    .rem(padding, 20, 20);
+    border-bottom:1px solid #ddd;
+    .rem(font-size, 28);
+    color: @bg;
   }
-  .type-bar{
-    text-align: center;
-    .rem(padding, 20, 0);
-    .rem(margin-top, 12);
-    background-color: #fff;
-    div{
+  .recommend-body{
+    .recommend-swiper{
+      .rem(font-size, 24);
       img{
-        width: 80%;
         margin: 0 auto;
         display: block;
-        border: none;
-        .rem(margin-bottom, 14);
       }
-      span{
-        .rem(font-size, 26);
-        color: #999;
+      .name{
+        .rem(margin-bottom, 12);
+        word-break: break-all;
       }
-    }
-  }
-  .ad-banner{
-    .rem(padding, 12, 0, 24, 0);
-  }
-  .recommend-area{
-    background-color: #fff;
-    .recommend-title{
-      .rem(padding, 20, 20);
-      border-bottom:1px solid #ddd;
-      .rem(font-size, 28);
-      color: @bg;
-    }
-    .recommend-body{
-      .recommend-swiper{
-        .rem(font-size, 24);
-        img{
-          margin: 0 auto;
-          display: block;
-        }
-        .name{
-          .rem(margin-bottom, 12);
-          word-break: break-all;
-        }
-        .name,.price{
-          .rem(padding, 0, 14);
-          span{
-            text-decoration: line-through;
-          }
+      .name,.price{
+        .rem(padding, 0, 14);
+        span{
+          text-decoration: line-through;
         }
       }
     }
   }
-  .hot-area{
-    .hot-title{
-      .rem(padding, 20, 20);
-      .rem(font-size, 28);
-      color: @bg;
-    }
-    text-align: center;
-    font-size:14px;
-    word-break: keep-all;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    .van-col:nth-child(odd){
-      float: left;
-    }
-    .van-col:nth-child(even){
-      float: right;
-    }
+}
+.hot-area{
+  .hot-title{
+    .rem(padding, 20, 20);
+    .rem(font-size, 28);
+    color: @bg;
   }
+  text-align: center;
+  font-size:14px;
+  word-break: keep-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  .van-col:nth-child(odd){
+    float: left;
+  }
+  .van-col:nth-child(even){
+    float: right;
+  }
+}
 </style>
