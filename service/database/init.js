@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const db = 'mongodb://localhost/smile-db'
-// const glob = require('glob')
-// const { resolve } = require('path')
+const glob = require('glob')
+const { resolve } = require('path')
 
 exports.connect = () => {
   // 连接数据库
@@ -45,6 +45,7 @@ exports.connect = () => {
   })
 
 }
-// exports.initSchemas = () => {
-//   glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
-// }
+// 引入schema
+exports.initSchemas = () => {
+  glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
+}
